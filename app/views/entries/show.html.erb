@@ -1,0 +1,44 @@
+<%	provide(:title,	'Comment')	%>
+<h1>Post Details</h1>
+<center>
+<p>
+  <%= @entry.title %>
+  <Br/>
+	<%= @entry.content %>
+</p>
+<% if @entry.comments.any? %>
+<h1>Comments</h1>
+<ul>
+	<% @entry.comments.each do |comment| %>
+	<span class="timestamp">
+
+	<li><%= comment.content %></li>
+	Posted <%= time_ago_in_words(comment.created_at) %> ago
+	</span>
+    <% end %>
+	<% end %>
+
+</ul>
+</center>
+
+
+<% if (current_user == @entry.user) || (logged_in? && current_user.following?(@entry.user)) %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@comment) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <input type="hidden" name="entry_id" value="<%= @entry.id %>" />
+		  <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+
+      <%= f.label :content %>
+      <%= f.text_field :content, class: 'form-control' %>
+
+      <%= f.submit "Make a Comment", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+
+<% end %>

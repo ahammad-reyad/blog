@@ -1,6 +1,11 @@
 class EntriesController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
 
+  def show
+    @entry = Entry.find(params[:id])
+    @comment = Comment.new
+  end
+
   def create
     @entry = current_user.entries.build(entry_params)
     if @entry.save

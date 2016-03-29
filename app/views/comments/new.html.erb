@@ -1,0 +1,19 @@
+<%	provide(:title,	'Comment')	%>
+<h1>Post a Comment</h1>
+<div	class="row">
+		<div	class="col-md-6	col-md-offset-3">
+				<%=	form_for(@comment)	do	|f|	%>
+				<%= render 'shared/error_messages', object: f.object %>
+
+						<input type="hidden" name="entry_id" value="<%= @entry_id %>" />
+
+						<%=	f.label	:body	%>
+						<%=	f.text_area	:content, class: "form_control"	%>
+
+						<%=	f.submit	"Post Your Comment",	class:	"btn	btn-primary"	%>
+
+				<%	end	%>
+
+		</div>
+		redirect_to micropost_path(@micropost)
+</div>
