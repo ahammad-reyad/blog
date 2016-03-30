@@ -7,7 +7,7 @@
 
 						<input type="hidden" name="entry_id" value="<%= @entry_id %>" />
 
-						<%=	f.label	:body	%>
+						<%=	f.label	:content	%>
 						<%=	f.text_area	:content, class: "form_control"	%>
 
 						<%=	f.submit	"Post Your Comment",	class:	"btn	btn-primary"	%>
@@ -15,5 +15,4 @@
 				<%	end	%>
 
 		</div>
-		redirect_to micropost_path(@micropost)
 </div>

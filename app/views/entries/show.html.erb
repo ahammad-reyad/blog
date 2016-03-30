@@ -33,7 +33,7 @@
 		  <input type="hidden" name="user_id" value="<%= current_user.id %>" />
 
       <%= f.label :content %>
-      <%= f.text_field :content, class: 'form-control' %>
+      <%= f.text_area :content, class: 'form-control' %>
 
       <%= f.submit "Make a Comment", class: "btn btn-primary" %>
     <% end %>
